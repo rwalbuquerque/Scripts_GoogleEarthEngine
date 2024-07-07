@@ -1,4 +1,4 @@
-//Área (asset) importada no script
+//Área importada como asset
 var poligono_reg = table.map(function(feat) {return feat.set({'tipo': 'Restaura'})});
 
 //Mudar o nome da área importada
@@ -50,8 +50,16 @@ var s2020_1 = s2CloudMasked.filterDate('2020-01-01','2020-06-30').filterBounds(f
 var s2020_2 = s2CloudMasked.filterDate('2020-07-01','2020-12-31').filterBounds(feature_out).map(maskClouds).map(addIndexBands).median()
 var s2021_1 = s2CloudMasked.filterDate('2021-01-01','2021-06-30').filterBounds(feature_out).map(maskClouds).map(addIndexBands).median()
 var s2021_2 = s2CloudMasked.filterDate('2021-07-01','2021-12-31').filterBounds(feature_out).map(maskClouds).map(addIndexBands).median()
-//var s2022_1 = s2CloudMasked.filterDate('2022-01-01','2022-06-30').filterBounds(feature_out).map(maskClouds).map(addIndexBands).median()
-//var s2022_2 = s2CloudMasked.filterDate('2022-07-01','2022-12-31').filterBounds(feature_out).map(maskClouds).map(addIndexBands).median()
+var s2022_1 = s2CloudMasked.filterDate('2022-01-01','2022-06-30').filterBounds(feature_out).map(maskClouds).map(addIndexBands).median()
+var s2022_2 = s2CloudMasked.filterDate('2022-07-01','2022-12-31').filterBounds(feature_out).map(maskClouds).map(addIndexBands).median()
+var s2023_1 = s2CloudMasked.filterDate('2023-01-01','2023-06-30').filterBounds(feature_out).map(maskClouds).map(addIndexBands).median()
+var s2023_2 = s2CloudMasked.filterDate('2023-07-01','2023-12-31').filterBounds(feature_out).map(maskClouds).map(addIndexBands).median()
+//var s2024_1 = s2CloudMasked.filterDate('2024-01-01','2024-06-30').filterBounds(feature_out).map(maskClouds).map(addIndexBands).median()
+//var s2024_2 = s2CloudMasked.filterDate('2024-07-01','2024-12-31').filterBounds(feature_out).map(maskClouds).map(addIndexBands).median()
+//var s2025_1 = s2CloudMasked.filterDate('2025-01-01','2025-06-30').filterBounds(feature_out).map(maskClouds).map(addIndexBands).median()
+//var s2025_2 = s2CloudMasked.filterDate('2025-07-01','2025-12-31').filterBounds(feature_out).map(maskClouds).map(addIndexBands).median()
+//var s2026_1 = s2CloudMasked.filterDate('2026-01-01','2026-06-30').filterBounds(feature_out).map(maskClouds).map(addIndexBands).median()
+//var s2026_2 = s2CloudMasked.filterDate('2026-07-01','2026-12-31').filterBounds(feature_out).map(maskClouds).map(addIndexBands).median()
 
 
 Map.addLayer(s2016_1, {bands: ['B4', 'B3', 'B2'], min: 0, max: 2000},'Sentinel-2 s2016_1',false);
@@ -66,8 +74,16 @@ Map.addLayer(s2020_1, {bands: ['B4', 'B3', 'B2'], min: 0, max: 2000},'Sentinel-2
 Map.addLayer(s2020_2, {bands: ['B4', 'B3', 'B2'], min: 0, max: 2000},'Sentinel-2 s2020_2',false);
 Map.addLayer(s2021_1, {bands: ['B4', 'B3', 'B2'], min: 0, max: 2000},'Sentinel-2 s2021_1',false);
 Map.addLayer(s2021_2, {bands: ['B4', 'B3', 'B2'], min: 0, max: 2000},'Sentinel-2 s2021_2',false);
-//Map.addLayer(s2022_1, {bands: ['B4', 'B3', 'B2'], min: 0, max: 2000},'Sentinel-2 s2022_1',false);
-//Map.addLayer(s2022_2, {bands: ['B4', 'B3', 'B2'], min: 0, max: 2000},'Sentinel-2 s2022_2',false);
+Map.addLayer(s2022_1, {bands: ['B4', 'B3', 'B2'], min: 0, max: 2000},'Sentinel-2 s2022_1',false);
+Map.addLayer(s2022_2, {bands: ['B4', 'B3', 'B2'], min: 0, max: 2000},'Sentinel-2 s2022_2',false);
+Map.addLayer(s2023_1, {bands: ['B4', 'B3', 'B2'], min: 0, max: 2000},'Sentinel-2 s2023_1',false);
+Map.addLayer(s2023_2, {bands: ['B4', 'B3', 'B2'], min: 0, max: 2000},'Sentinel-2 s2023_2',false);
+//Map.addLayer(s2024_1, {bands: ['B4', 'B3', 'B2'], min: 0, max: 2000},'Sentinel-2 s2024_1',false);
+//Map.addLayer(s2024_2, {bands: ['B4', 'B3', 'B2'], min: 0, max: 2000},'Sentinel-2 s2024_2',false);
+//Map.addLayer(s2025_1, {bands: ['B4', 'B3', 'B2'], min: 0, max: 2000},'Sentinel-2 s2025_1',false);
+//Map.addLayer(s2025_2, {bands: ['B4', 'B3', 'B2'], min: 0, max: 2000},'Sentinel-2 s2025_2',false);
+//Map.addLayer(s2026_1, {bands: ['B4', 'B3', 'B2'], min: 0, max: 2000},'Sentinel-2 s2026_1',false);
+//Map.addLayer(s2026_2, {bands: ['B4', 'B3', 'B2'], min: 0, max: 2000},'Sentinel-2 s2026_2',false);
 
 var processaArea = function(area) {
     area = area.set('s2016_1', ee.Number(s2016_1.reduceRegion({reducer: ee.Reducer.mean(),geometry: area.geometry(), scale: 30,maxPixels: 1e13}).get('NDVI')))
@@ -82,8 +98,16 @@ var processaArea = function(area) {
     area = area.set('s2020_2', ee.Number(s2020_2.reduceRegion({reducer: ee.Reducer.mean(),geometry: area.geometry(), scale: 30,maxPixels: 1e13}).get('NDVI')))
     area = area.set('s2021_1', ee.Number(s2021_1.reduceRegion({reducer: ee.Reducer.mean(),geometry: area.geometry(), scale: 30,maxPixels: 1e13}).get('NDVI')))
     area = area.set('s2021_2', ee.Number(s2021_2.reduceRegion({reducer: ee.Reducer.mean(),geometry: area.geometry(), scale: 30,maxPixels: 1e13}).get('NDVI')))
-    //area = area.set('s2022_1', ee.Number(s2022_1.reduceRegion({reducer: ee.Reducer.mean(),geometry: area.geometry(), scale: 30,maxPixels: 1e13}).get('NDVI')))
-    //area = area.set('s2022_2', ee.Number(s2022_2.reduceRegion({reducer: ee.Reducer.mean(),geometry: area.geometry(), scale: 30,maxPixels: 1e13}).get('NDVI')))
+    area = area.set('s2022_1', ee.Number(s2022_1.reduceRegion({reducer: ee.Reducer.mean(),geometry: area.geometry(), scale: 30,maxPixels: 1e13}).get('NDVI')))
+    area = area.set('s2022_2', ee.Number(s2022_2.reduceRegion({reducer: ee.Reducer.mean(),geometry: area.geometry(), scale: 30,maxPixels: 1e13}).get('NDVI')))
+    area = area.set('s2023_1', ee.Number(s2023_1.reduceRegion({reducer: ee.Reducer.mean(),geometry: area.geometry(), scale: 30,maxPixels: 1e13}).get('NDVI')))
+    area = area.set('s2023_2', ee.Number(s2023_2.reduceRegion({reducer: ee.Reducer.mean(),geometry: area.geometry(), scale: 30,maxPixels: 1e13}).get('NDVI')))
+    //area = area.set('s2024_1', ee.Number(s2024_1.reduceRegion({reducer: ee.Reducer.mean(),geometry: area.geometry(), scale: 30,maxPixels: 1e13}).get('NDVI')))
+    //area = area.set('s2024_2', ee.Number(s2024_2.reduceRegion({reducer: ee.Reducer.mean(),geometry: area.geometry(), scale: 30,maxPixels: 1e13}).get('NDVI')))
+    //area = area.set('s2025_1', ee.Number(s2025_1.reduceRegion({reducer: ee.Reducer.mean(),geometry: area.geometry(), scale: 30,maxPixels: 1e13}).get('NDVI')))
+    //area = area.set('s2025_2', ee.Number(s2025_2.reduceRegion({reducer: ee.Reducer.mean(),geometry: area.geometry(), scale: 30,maxPixels: 1e13}).get('NDVI')))
+    //area = area.set('s2026_1', ee.Number(s2026_1.reduceRegion({reducer: ee.Reducer.mean(),geometry: area.geometry(), scale: 30,maxPixels: 1e13}).get('NDVI')))
+    //area = area.set('s2026_2', ee.Number(s2026_2.reduceRegion({reducer: ee.Reducer.mean(),geometry: area.geometry(), scale: 30,maxPixels: 1e13}).get('NDVI')))
   return area
 }
 
@@ -91,7 +115,9 @@ var feature_out2 = feature_out.map(processaArea)
 
 //Escolha a pasta do Google Drive, o nome do arquivo e o tipo de
 //arquivo como *.csv para verificar os valores de NDVI 
-Export.table.toDrive(feature_out2, 'sentinel', 'sentinel', 'sentinel', "CSV", ['tipo','s2016_1','s2016_2','s2017_1','s2017_2','s2018_1','s2018_2','s2019_1','s2019_2','s2020_1','s2020_2','s2021_1','s2021_2'])//,'s2022_1','s2022_2']) 
+Export.table.toDrive(feature_out2, 'sentinel', 'sentinel', 'sentinel', "CSV", ['tipo','s2016_1','s2016_2','s2017_1','s2017_2','s2018_1','s2018_2','s2019_1','s2019_2','s2020_1','s2020_2','s2021_1','s2021_2','s2022_1','s2022_2','s2023_1','s2023_2'])
+//Dados até 2026
+//Export.table.toDrive(feature_out2, 'sentinel', 'sentinel', 'sentinel', "CSV", ['tipo','s2016_1','s2016_2','s2017_1','s2017_2','s2018_1','s2018_2','s2019_1','s2019_2','s2020_1','s2020_2','s2021_1','s2021_2','s2022_1','s2022_2','s2023_1','s2023_2','s2024_1','s2024_2','s2025_1','s2025_2','s2026_1','s2026_2'])
 
 //print(feature_out2)
 
@@ -108,9 +134,17 @@ var feature_out3 = ee.List([]).add(
   feature_out2.limit(100).aggregate_array('s2020_1')).add(
   feature_out2.limit(100).aggregate_array('s2020_2')).add(
   feature_out2.limit(100).aggregate_array('s2021_1')).add(
-  feature_out2.limit(100).aggregate_array('s2021_2'));//.add(
-  //feature_out2.limit(100).aggregate_array('s2022_1')).add(
-  //feature_out2.limit(100).aggregate_array('s2022_2'));
+  feature_out2.limit(100).aggregate_array('s2021_2')).add(
+  feature_out2.limit(100).aggregate_array('s2022_1')).add(
+  feature_out2.limit(100).aggregate_array('s2022_2')).add(
+  feature_out2.limit(100).aggregate_array('s2023_1')).add(
+  feature_out2.limit(100).aggregate_array('s2023_2'));//.add(
+  //feature_out2.limit(100).aggregate_array('s2024_1')).add(
+  //feature_out2.limit(100).aggregate_array('s2024_2')).add(
+  //feature_out2.limit(100).aggregate_array('s2025_1')).add(
+  //feature_out2.limit(100).aggregate_array('s2025_2')).add(
+  //feature_out2.limit(100).aggregate_array('s2026_1')).add(
+  //feature_out2.limit(100).aggregate_array('s2026_2'));
 
 //print(feature_out3)
 
@@ -133,8 +167,16 @@ var listsVarColumns = ee.List([
   [9, ee.Array(ee.List(feature_out3)).get([9, 0])],
   [10, ee.Array(ee.List(feature_out3)).get([10, 0])],
   [11, ee.Array(ee.List(feature_out3)).get([11, 0])],
-  //[12, ee.Array(ee.List(feature_out3)).get([12, 0])],
-  //[13, ee.Array(ee.List(feature_out3)).get([13, 0])],
+  [12, ee.Array(ee.List(feature_out3)).get([12, 0])],
+  [13, ee.Array(ee.List(feature_out3)).get([13, 0])],
+  [14, ee.Array(ee.List(feature_out3)).get([14, 0])],
+  [15, ee.Array(ee.List(feature_out3)).get([15, 0])],
+  //[16, ee.Array(ee.List(feature_out3)).get([16, 0])],
+  //[17, ee.Array(ee.List(feature_out3)).get([17, 0])],
+  //[18, ee.Array(ee.List(feature_out3)).get([18, 0])],
+  //[19, ee.Array(ee.List(feature_out3)).get([19, 0])],
+  //[20, ee.Array(ee.List(feature_out3)).get([20, 0])],
+  //[21, ee.Array(ee.List(feature_out3)).get([21, 0])],
 ]);
 
 //print(listsVarColumns)
@@ -161,23 +203,31 @@ var feature_out4 = ee.List([
   [ee.Array(feature_out3.get(8)).multiply(ee.Number(linearFit.get('scale'))).add(ee.Number(linearFit.get('offset')))],
   [ee.Array(feature_out3.get(9)).multiply(ee.Number(linearFit.get('scale'))).add(ee.Number(linearFit.get('offset')))],
   [ee.Array(feature_out3.get(10)).multiply(ee.Number(linearFit.get('scale'))).add(ee.Number(linearFit.get('offset')))],
-  [ee.Array(feature_out3.get(11)).multiply(ee.Number(linearFit.get('scale'))).add(ee.Number(linearFit.get('offset')))]//,
-  //[ee.Array(feature_out3.get(12)).multiply(ee.Number(linearFit.get('scale'))).add(ee.Number(linearFit.get('offset')))],
-  //[ee.Array(feature_out3.get(13)).multiply(ee.Number(linearFit.get('scale'))).add(ee.Number(linearFit.get('offset')))]
+  [ee.Array(feature_out3.get(11)).multiply(ee.Number(linearFit.get('scale'))).add(ee.Number(linearFit.get('offset')))],
+  [ee.Array(feature_out3.get(12)).multiply(ee.Number(linearFit.get('scale'))).add(ee.Number(linearFit.get('offset')))],
+  [ee.Array(feature_out3.get(13)).multiply(ee.Number(linearFit.get('scale'))).add(ee.Number(linearFit.get('offset')))],
+  [ee.Array(feature_out3.get(14)).multiply(ee.Number(linearFit.get('scale'))).add(ee.Number(linearFit.get('offset')))],
+  [ee.Array(feature_out3.get(15)).multiply(ee.Number(linearFit.get('scale'))).add(ee.Number(linearFit.get('offset')))]//,
+  //[ee.Array(feature_out3.get(16)).multiply(ee.Number(linearFit.get('scale'))).add(ee.Number(linearFit.get('offset')))],
+  //[ee.Array(feature_out3.get(17)).multiply(ee.Number(linearFit.get('scale'))).add(ee.Number(linearFit.get('offset')))],
+  //[ee.Array(feature_out3.get(18)).multiply(ee.Number(linearFit.get('scale'))).add(ee.Number(linearFit.get('offset')))],
+  //[ee.Array(feature_out3.get(19)).multiply(ee.Number(linearFit.get('scale'))).add(ee.Number(linearFit.get('offset')))],
+  //[ee.Array(feature_out3.get(20)).multiply(ee.Number(linearFit.get('scale'))).add(ee.Number(linearFit.get('offset')))],
+  //[ee.Array(feature_out3.get(21)).multiply(ee.Number(linearFit.get('scale'))).add(ee.Number(linearFit.get('offset')))]
 ]);
 
 //Plotar valores de NDVI e tendência num mesmo gráfico
 
 // Juntar listas numa mesma base de dados
 var yValues = feature_out4.zip(feature_out3);
-//Plotar gráfico
-var chart = ui.Chart.array.values({array: yValues, axis: 0, xLabels: ee.List(['1sem/2016','2sem/2016','1sem/2017','2sem/2017','1sem/2018','2sem/2018','1sem/2019','2sem/2019','1sem/2020','2sem/2020','1sem/2021','2sem/2021'])})//,'1sem/2022','2sem/2022'])})
+//Plotar gráfico (OBS: Linha abaixo deixa comentado a partir de 1sem/2024)
+var chart = ui.Chart.array.values({array: yValues, axis: 0, xLabels: ee.List(['1sem/2016','2sem/2016','1sem/2017','2sem/2017','1sem/2018','2sem/2018','1sem/2019','2sem/2019','1sem/2020','2sem/2020','1sem/2021','2sem/2021','1sem/2022','2sem/2022','1sem/2023','2sem/2023'])})//,'1sem/2024','2sem/2024','1sem/2025','2sem/2025','1sem/2026','2sem/2026'])})
                 .setSeriesNames(['NDVI: tendência', 'NDVI: valores'])
                 .setOptions({
                   title: 'Valores NDVI do Sentinel',
                   hAxis: {
                     title: 'Imagens Sentinel',
-                    //viewWindow: {min: 0, max: 9},
+                    //viewWindow: {min: 0, max: 15},
                     titleTextStyle: {italic: false, bold: true}
                   },
                   vAxis: {
